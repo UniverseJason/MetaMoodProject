@@ -6,7 +6,7 @@ This repo has scripts which can be used for conducting analysis on data that wou
 The scripts have code which can be used for connecting to a database.
 
 ## Authors
-
+Bryce Hinkley
 - [@Ouroborosrex](https://www.github.com/Ouroborosrex)
 
 
