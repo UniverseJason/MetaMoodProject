@@ -9,3 +9,10 @@ The scripts have code which can be used for connecting to a database.
 
 - [@Ouroborosrex](https://www.github.com/Ouroborosrex)
 
+
+## Installation
+
+The file provided is a Jupyter file that can be ran in Google Colab or any other software that will accept Jupyter files.
+
+Both files have varying dependencies and will not require too much modification beyond changing the database connection information in order to connect to your database.
+    
