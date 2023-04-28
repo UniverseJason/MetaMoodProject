@@ -47,6 +47,11 @@ From there, download this GitHub repository. To make any changes to the function
 
 To integrate a function into AWS API Gateway, create a route with the appropriate HTTP verb (GET, PUT, POST, DELETE, etc.) and attach an AWS Lambda function integration.
 Whenever the appropriate HTTP verb is sent to that route, it will trigger the lambda function and return the results. 
+
+# AWS Lambda Analysis
+
+There are also AWS Lambda functions that need to be created. Dependencies can be added with AWS Lambda Support Layers, but the modules need to be in the path: python/lib/python3.8/site-packages/. 
+
 # Data Collection
 
 By Jiaxing Li
