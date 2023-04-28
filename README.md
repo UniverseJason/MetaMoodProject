@@ -6,30 +6,29 @@ First, do sudo vi /etc/nginx/sites-available/default after downloading NGINX and
 
 In this file, copy paste the following code:
 
-server {
+        server {
 
-        # SSL configuration
-        listen 443 ssl http2 default_server;
-        listen [::]:443 ssl http2 default_server;
-        include snippets/self-signed.conf;
-        include snippets/ssl-params.conf;
+                # SSL configuration
+                listen 443 ssl http2 default_server;
+                listen [::]:443 ssl http2 default_server;
+                include snippets/self-signed.conf;
+                include snippets/ssl-params.conf;
 
-        root /var/www/webapp/wwwroot;
-        try_files $uri $uri/ /index.html =404;
-        index index.html;
+                root /var/www/webapp/wwwroot;
+                try_files $uri $uri/ /index.html =404;
+                index index.html;
 
-        server_name <INSERT FQDN HERE>;
+                server_name <INSERT FQDN HERE>;
 
-}
+        }
 
-<code>
-server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-        server_name <INSERT FQDN HERE>;
-        return 302 https://$server_name$request_uri;
-}
-</code>
+        server {
+
+                listen 80 default_server;
+                listen [::]:80 default_server;
+                server_name <INSERT FQDN HERE>;
+                return 302 https://$server_name$request_uri;
+        }
   
 Also, type sudo mkdir /var/www/html/webapp. This is where the static files will be stored that will be served to the client.
   
