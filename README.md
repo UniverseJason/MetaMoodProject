@@ -47,3 +47,16 @@ From there, download this GitHub repository. To make any changes to the function
 
 To integrate a function into AWS API Gateway, create a route with the appropriate HTTP verb (GET, PUT, POST, DELETE, etc.) and attach an AWS Lambda function integration.
 Whenever the appropriate HTTP verb is sent to that route, it will trigger the lambda function and return the results. 
+# Data Collection
+
+By Jiaxing Li
+
+This repo contains code for collecting data from the web, as well as downloaded data.
+
+There are 3 platform that we are collecting data from:
+
+1. Twitter
+2. Reddit
+3. Spotify
+
+All implementations are in Python.
