@@ -22,12 +22,14 @@ server {
 
 }
 
+<code>
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
         server_name <INSERT FQDN HERE>;
         return 302 https://$server_name$request_uri;
 }
+</code>
   
 Also, type sudo mkdir /var/www/html/webapp. This is where the static files will be stored that will be served to the client.
   
