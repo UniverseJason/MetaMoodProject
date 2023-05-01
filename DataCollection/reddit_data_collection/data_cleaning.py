@@ -2,9 +2,9 @@ import pandas as pd
 import csv
 import tqdm
 
-input_file = "./data_archive/RC_2015-01.csv"
+input_file = "./data_archive/reddit_analysis_data.csv"
 output_file = "./data_archive/new_reddit_comment.csv"
-file_line = 53851543
+file_line = 37153681
 
 chunksize = 10000
 reader = pd.read_csv(input_file, chunksize=chunksize)
@@ -14,7 +14,7 @@ progress_bar = tqdm.tqdm(total=file_line)
 counter = 0
 for df in reader:
     # drop controversiality, distinguished, downs, score columns
-    df = df.drop(columns=['controversiality', 'distinguished', 'downs', 'score'])
+    df = df.drop(columns=['Unnamed: 0', 'author', 'link_id', 'id'])
 
     # drop rows if body is [deleted]
     df = df[df.body != '[deleted]']
@@ -47,12 +47,14 @@ for df in reader:
     # remove consecutive whitespace more than 3
     df['body'] = df['body'].str.replace(r'\s{3,}', ' ', case=False, regex=True)
 
-    # drop rows if any of the columns are null
-    df = df.dropna(subset=['body', 'author'])
+    # drop body if it is less than 3 characters
+    df = df[df.body.str.len() > 3]
 
-    # drop rows if body or author is empty
-    df = df[df.body != '' ]
-    df = df[df.author != '']
+    # drop special characters
+    df['body'] = df['body'].str.replace(r'[^a-zA-Z0-9\s]', '', case=False, regex=True)
+
+    # drop rows if any of the columns are null
+    df = df.dropna(subset=['body'])
 
     # write to csv
     if counter == 0:
