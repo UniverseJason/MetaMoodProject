@@ -69,7 +69,7 @@ All implementations are in Python.
 
 # Large Scale Database Management Data Analytics
 
-This repo has scripts which can be used for conducting analysis on data that would be found from text and from Spotify track information.
+This repo has scripts which can be used for conducting analysis on data that would be found from text that would be from Reddit or Twitter and from Spotify track information. It is recommended to import data from your database or from a .csv download. Some changes will be needed for the code to run depending on if you made any changes to the database scheme or naming system.
 
 The scripts have code which can be used for connecting to a database.
 
@@ -82,5 +82,27 @@ Bryce Hinkley
 
 The file provided is a Jupyter file that can be ran in Google Colab or any other software that will accept Jupyter files.
 
-Both files have varying dependencies and will not require too much modification beyond changing the database connection information in order to connect to your database.
+Both files have varying dependencies and will not require too much modification beyond changing the database connection information in order to connect to your database. The mysql-connector-python library is used in order to connect to the database. The code used to connect looks like this,
+
+mydb = mysql.connector.connect(
+  host="EXAMPLE",
+  user="EXAMPLE",
+  password="EXAMPLE",
+  database="EXAMPLE"
+)
+
+Replace the EXAMPLE text with the information about your database. Everyone will - and should - have different imformation about the database so you will be required to modify that code on your own to make it work. You can then retrieve any information needed with this code,
+
+try:
+    query = "Select body from EXAMPLE;"
+    result_dataFrame = pd.read_sql(query,mydb)
+    mydb.close() #close the connection
+    print(result_dataFrame.head())
+except Exception as e:
+    mydb.close()
+    print(str(e))
+
+As you can see it will recieve any MySQL queries you want to send and can retrieve the information you want to conduct analysis on. Also change the following code based on the columns of information found in your table. In this example the text column is called 'body' so we will run the prediction function on the 'body' column found in the table that we retrieved.
+
+result_dataFrame['labels']=result_dataFrame['body'].apply(predict)
     
